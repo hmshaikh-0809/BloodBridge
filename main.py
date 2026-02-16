@@ -10,12 +10,12 @@ app = Flask(__name__)
 OLLAMA_URL = "http://localhost:11434/api/generate"
 OLLAMA_MODEL = "phi3:mini"
 
-app.secret_key = "supersecretkey123" 
+app.secret_key = "YOUR_SECRET_KEY" 
 
 mydb = mysql.connector.connect(
         host = "localhost",
         user = "root",
-        password = "Thisiscoder@sk93",
+        password = "YOUR_MYSQL_PASSWORD_HERE",
         database = "Hamza_BD"
 )
 
