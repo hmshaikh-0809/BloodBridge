@@ -197,7 +197,7 @@ BloodBridge provides a comprehensive solution for managing blood donation activi
 Developed by:
 
 Hamza Shaikh  
-Bachelor of Computer Science (BCA)
+Bachelor of Computer Science (BCS)
 
 ---
 
