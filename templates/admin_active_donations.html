@@ -1,0 +1,69 @@
+{% extends "admin_base.html" %}
+{% block title %}Admin active donation{% endblock %}
+{% block content %}
+
+<main class="admin_content">
+
+    <h2 class="admin_page_title">Active Donations</h2>
+
+    <!-- No Active Donations Message -->
+    <p class="no_data_box" style="{% if donations|length == 0 %}display:block{% else %}display:none{% endif %}">
+        Currently no active donations.
+    </p>
+
+    <div class="admin_table_wrapper"
+        style="{% if donations|length == 0 %}display:none{% else %}display:block{% endif %}">
+
+        <table class="admin_table">
+            <thead>
+                <tr>
+                    <th>Sr No.</th>
+                    <th>Donation ID</th>
+                    <th>Status</th>
+                    <th>Request Date</th>
+                    <th>Last Updated</th>
+                    <th>Verified by</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for d in donations %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>D{{ d.donation_id }}</td>
+                    <td>{{ d.status }}</td>
+                    <td>{{ d.request_date.strftime('%d/%m/%y') }}</td>
+                    <td>{{ d.last_updated.strftime('%d/%m/%y') }}</td>
+
+                    <!-- VERIFIED BY LOGIC -->
+                    <td>
+                        {% if d.donor_confirmed == 'No' and d.patient_confirmed == 'No' %}
+                        None
+                        {% elif d.donor_confirmed == 'Yes' and d.patient_confirmed == 'No' %}
+                        Donor
+                        {% elif d.donor_confirmed == 'No' and d.patient_confirmed == 'Yes' %}
+                        Patient
+                        {% elif d.donor_confirmed == 'Yes' and d.patient_confirmed == 'Yes' %}
+                        Both
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        <a href="{{ url_for('admin_active_donation_details', donation_id=d.donation_id) }}">
+                            View Details
+                        </a>
+                    </td>
+
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+    </div>
+
+</main>
+
+{% endblock %}

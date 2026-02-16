@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}BloodBridge{% endblock %}</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Lobster&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+  <div class="blood-bg">
+    <div class="blood-layer"></div>
+    <div class="blood-layer"></div>
+  </div>
+  <!-- ================= MAIN SITE CONTENT ================= -->
+  <div class="page-container">
+
+    <header>
+      <div class="container">
+        <img src="{{ url_for('static', filename='images/top.jpg') }}" alt="banner" class="banner">
+        <div>
+          <h1>BloodBridge</h1>
+        </div>
+      </div>
+
+      <div>
+        <form class="search_bar" action="{{ url_for('search') }}" method="GET">
+          <input type="text" name="q" id="sb" placeholder="search here..">
+          <button type="submit">
+            <img src="{{ url_for('static', filename='images/search-icon-png-2.png') }}" class="search_img">
+          </button>
+        </form>
+      </div>
+
+      <nav>
+        <div>
+          <a href="{{ url_for('home') }}">home</a>
+          <a href="{{ url_for('vision') }}">Our Vision</a>
+          <a href="{{ url_for('camp') }}">Live Blood Camps</a>
+
+          {% if session.get('donor_id') %}
+          <a href="{{ url_for('donor_dashboard') }}">Donor Account</a>
+          {% else %}
+          <a href="{{ url_for('donor_login') }}">Donor Login</a>
+          {% endif %}
+
+          {% if session.get('patient_id') %}
+          <a href="{{ url_for('patient_dashboard') }}">Patient Account</a>
+          {% else %}
+          <a href="{{ url_for('patient_login') }}">Patient Login</a>
+          {% endif %}
+
+          {% if session.get('admin_logged_in') %}
+          <a href="{{ url_for('admin_dashboard') }}">Admin Panel</a>
+          {% else %}
+          <a href="{{ url_for('admin_login') }}">Admin</a>
+          {% endif %}
+
+          <a href="{{ url_for('about') }}">About Us</a>
+          <a href="{{ url_for('contact') }}">Contact Us</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="content">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+      <div class="social_media">
+        <p>Follow Us :</p>
+        <br>
+        <div>
+          <a href="https://www.instagram.com/bloodbridge_786">
+            <img src="{{ url_for('static', filename='images/insta.png') }}">
+          </a>
+          <a href="https://whatsapp.com/channel/0029Vb7wbmM8kyyUtEIcV22s"><img
+              src="{{ url_for('static', filename='images/wtsup.png') }}"></a>
+          <a href="https://x.com/bloodbridge_786"><img src="{{ url_for('static', filename='images/twitter.png') }}"></a>
+        </div>
+        <br>
+        <p>&copy; 2026 BloodBridge. All rights reserved.</p>
+      </div>
+    </footer>
+
+  </div>
+  <!-- ================= END PAGE CONTAINER ================= -->
+
+
+  <!-- Floating BloodBot Button -->
+  <div id="bb-float-wrapper">
+
+    <div id="bb-float-btn" onclick="bbOpenChatbot()">
+      <img src="{{ url_for('static', filename='images/chatbot.png') }}" alt="BloodBot">
+    </div>
+
+    <div id="bb-float-text">Ask BloodBot</div>
+
+  </div>
+
+
+  {% block scripts %}{% endblock %}
+  <script>
+    function bbOpenChatbot() {
+      window.location.href = "/bloodbot";
+    }
+  </script>
+
+</body>
+</body>
+
+</html>

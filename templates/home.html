@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<main class="home_content">
+
+    <br>
+    <div>
+        <h2 class="home_heading">CONNECTING THOSE WHO GIVE WITH THOSE WHO NEED</h2>
+    </div>
+
+    <section class="slider-container">
+
+    <!-- Left Arrow -->
+    <button class="slider-btn left" onclick="prevCard()">&#10094;</button>
+
+    <div class="slider-viewport">
+        <div class="slider-track">
+
+            <div class="card horizontal-card">
+                <img src="{{ url_for('static', filename='images/join_movement.png') }}" alt="Donate Blood">
+                <div class="card-content">
+                    <h3>Join the Movement</h3>
+                    <p>
+Blood donation is not just a medical act, it is a movement driven by humanity and compassion.
+By joining BloodBridge, you become part of a growing community of individuals who believe in
+saving lives without discrimination.
+Registration takes only a few minutes, but your decision can help patients during accidents,
+surgeries, childbirth complications, and life-threatening emergencies.
+Every donor strengthens the bridge between hope and survival.
+Together, we can ensure that no patient ever feels alone in a critical moment.
+</p>
+
+                </div>
+            </div>
+
+            <div class="card horizontal-card">
+                <img src="{{ url_for('static', filename='images/social_impact.png') }}" alt="Eligibility">
+                <div class="card-content">
+                    <h3>Social Impact</h3>
+                    <p>
+Blood donation creates a powerful social impact that goes far beyond a single life saved.
+It builds trust, unity, and responsibility within communities.
+Through BloodBridge, donors, hospitals, and patients come together on one platform
+to respond quickly in times of need.
+Each successful donation inspires others to step forward, creating a chain reaction of kindness.
+This collective effort helps build a society where humanity, empathy, and support always come first.
+</p>
+
+                </div>
+            </div>
+
+            <div class="card horizontal-card">
+                <img src="{{ url_for('static', filename='images/blood_type_matters.jpg') }}" alt="Process">
+                <div class="card-content">
+                    <h3>Every Blood Type Matters</h3>
+                    <p>
+Every blood type plays a crucial role in saving lives, and no type is ever insignificant.
+Some patients require rare blood groups, while others depend on regular donations to survive.
+By registering your blood group on BloodBridge, you become a vital link in someone’s survival chain.
+One single donation can help up to three different patients.
+Your blood type, your decision, and your willingness to help can truly become someone’s miracle.
+</p>
+
+                </div>
+            </div>
+
+            <div class="card horizontal-card">
+                <img src="{{ url_for('static', filename='images/real_stories.jpg') }}" alt="Camps">
+                <div class="card-content">
+                    <h3>Real Stories, Real Impact</h3>
+                    <p>
+Behind every successful blood donation lies a real story of courage, hope, and humanity.
+From accident victims to children battling serious illnesses, every unit of blood has a purpose.
+BloodBridge highlights the journeys of donors and recipients who remind us that kindness still exists.
+These real-life stories inspire others to come forward and take action.
+By becoming part of this platform, you also become part of a story that saves lives and spreads hope.
+</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Right Arrow -->
+    <button class="slider-btn right" onclick="nextCard()">&#10095;</button>
+
+</section>
+
+
+<section class="stats-section">
+
+    <h2 class="stats-heading">Our Impact So Far</h2>
+
+    <div class="stats-container">
+
+        <div class="stat-box">
+            <img src="{{ url_for('static', filename='images/lives_saved.png') }}" alt="Lives Saved">
+            <h3 class="counter" data-target="1250">0</h3>
+            <p>Lives Saved</p>
+        </div>
+
+        <div class="stat-box">
+            <img src="{{ url_for('static', filename='images/total_donors.png') }}" alt="Donors">
+            <h3 class="counter" data-target="3200">0</h3>
+            <p>Registered Donors</p>
+        </div>
+
+    
+        <div class="stat-box">
+            <img src="{{ url_for('static', filename='images/emergency_help.png') }}" alt="Emergency">
+            <h3 class="counter" data-target="900">0</h3>
+            <p>Emergency Requests Fulfilled</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="cta-section">
+
+    <div class="cta-container">
+
+        <!-- Become a Donor -->
+        <a href="{{ url_for('donor_register') }}" class="cta-card donor-card">
+            <img src="{{ url_for('static', filename='images/donate_blood.png') }}" alt="Become Donor">
+            <h2>Become a Donor</h2>
+            <p>Save lives by donating blood. Your one step can be someone’s tomorrow.</p>
+        </a>
+
+        <!-- Ask for Donation -->
+        <a href="{{ url_for('patient_register') }}" class="cta-card patient-card">
+            <img src="{{ url_for('static', filename='images/hope.png') }}" alt="Ask for Donation">
+            <h2>Ask for Donation</h2>
+            <p>Hope begins with a request. Find donors when you need them the most.</p>
+        </a>
+
+    </div>
+
+</section>
+
+<br>
+
+
+</main>
+
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>
+{% endblock %}

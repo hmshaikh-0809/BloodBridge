@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block title %}Active Requests{% endblock %}
+
+{% block content %}
+
+<main class="request-board">
+
+    <h2 class="page-title">Active Requests</h2>
+
+    <div class="no_request_box"
+     style="{% if donations|length == 0 %}display:block{% else %}display:none{% endif %}">
+    <p class="no_request_text">
+        No  active requests.
+    </p>
+</div>
+
+    <div class="table-container"
+        style="{% if donations|length == 0 %}display:none{% else %}display:block{% endif %}">
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Donor Name</th>
+                    <th>Blood Group</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% for d in donations %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ d.donor_name }}</td>
+                    <td>{{ d.blood_group }}</td>
+                    <td>{{ d.request_date.strftime('%d/%m/%Y') }}</td>
+
+                    <!-- STATUS -->
+                    <td>
+                        {% if d.patient_confirmed == 'Yes' and d.donor_confirmed == 'No' %}
+                            Pending donor approval
+                        {% else %}
+                            Active
+                        {% endif %}
+                    </td>
+
+                    <!-- ACTION -->
+                    <td class="confirm-box">
+                        {% if d.patient_confirmed == 'No' %}
+                            <form method="POST"
+                                  action="{{ url_for('patient_confirm_donation', donation_id=d.donation_id) }}">
+                                <label>
+                                    <input type="checkbox"
+                                           onclick="return confirmDonation(this)">
+                                    Confirm Donation
+                                </label>
+                            </form>
+                        {% else %}
+                            <label>
+                                <input type="checkbox" checked disabled>
+                                Donation Confirmed
+                            </label>
+                        {% endif %}
+                    </td>
+
+                    <!-- DETAILS -->
+                    <td>
+                        <a href="{{ url_for('patient_active_donation_details', donation_id=d.donation_id) }}"
+                           class="details-link">
+                            View Details
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+</main>
+
+<script>
+function confirmDonation(checkbox) {
+
+    const ok = confirm(
+        "Are you sure you want to confirm?\nThis can’t be undone."
+    );
+
+    if (!ok) {
+        checkbox.checked = false;
+        return false;
+    }
+
+    checkbox.form.submit();
+    return true;
+}
+</script>
+
+{% endblock %}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+    <div class="admin_topbar">
+        <div class="left">ADMINISTRATION</div>
+
+        <div class="right">
+            <a href="{{ url_for('home') }}">Visit Site</a>
+            <a href="{{ url_for('admin_change_password') }}">Change Password</a>
+            <a href="{{ url_for('admin_logout') }}">Logout</a>
+        </div>
+    </div>
+
+    <!-- PAGE WRAPPER -->
+    <div class="admin_container">
+
+        <!-- SIDEBAR -->
+        <div class="admin_sidebar">
+
+            <a href="{{ url_for('admin_dashboard') }}" class="sidebar_item">Home</a>
+            <a href="{{ url_for('admin_camps') }}" class="sidebar_item">Live Blood Camps</a>
+
+            <div class="sidebar_dropdown">
+                <div class="dropdown_title">Pending Approvals</div>
+                <div class="dropdown_content">
+                    <a href="{{ url_for('admin_pending_donor') }}">Pending Donor</a>
+                    <a href="{{ url_for('admin_pending_patient') }}">Pending Patient</a>
+                </div>
+            </div>
+
+            <a href="{{ url_for('admin_donor_list') }}" class="sidebar_item">Donor List</a>
+            <a href="{{ url_for('admin_patient_list') }}" class="sidebar_item">Patient List</a>
+
+            <div class="sidebar_dropdown">
+                <div class="dropdown_title">Donations</div>
+                <div class="dropdown_content">
+                    <a href="{{ url_for('admin_active_donations') }}">Active Donation</a>
+                    <a href="{{ url_for('admin_completed_donations') }}">Completed Donation</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="admin_main">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+    </div>
+
+
+    <script>
+        document.querySelectorAll(".dropdown_title").forEach(title => {
+            title.addEventListener("click", () => {
+                title.nextElementSibling.classList.toggle("open");
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Request Board{% endblock %}
+
+{% block content %}
+
+<main class="request-board">
+
+    <h2 class="page-title">Request Board</h2>
+
+    <!-- NO REQUEST MESSAGE -->
+    <div class="no_request_box"
+         style="{% if requests|length == 0 %}display:block{% else %}display:none{% endif %}">
+        <p class="no_request_text">
+            Currently, no blood requests are available.
+        </p>
+    </div>
+
+    <div class="table-container"
+         style="{% if requests|length == 0 %}display:none{% endif %}">
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Sr No.</th>
+                    <th>Patient Name</th>
+                    <th>Blood Group</th>
+                    <th>Date of Request</th>
+                    <th>Details</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for req in requests %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ req.patient_name }}</td>
+                    <td>{{ req.blood_group }}</td>
+                    <td>{{ req.request_date.strftime('%d/%m/%Y') }}</td>
+
+                    <td>
+    <a href="{{ url_for('donor_view_patient_details_hidden', request_id=req.request_id) }}"
+       class="details-link">
+        View details
+    </a>
+</td>
+
+
+                    <td class="action-buttons">
+
+                        <!-- ACCEPT -->
+                        <form action="{{ url_for('donor_accept_request', request_id=req.request_id) }}"
+                              method="post"
+                              style="display:inline;">
+                            <button type="submit" class="btn accept-btn">
+                                Accept
+                            </button>
+                        </form>
+
+                        <!-- REJECT -->
+                        <form action="{{ url_for('donor_reject_request', request_id=req.request_id) }}"
+                              method="post"
+                              style="display:inline;">
+                            <button type="submit" class="btn reject-btn">
+                                Reject
+                            </button>
+                        </form>
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+</main>
+
+{% endblock %}

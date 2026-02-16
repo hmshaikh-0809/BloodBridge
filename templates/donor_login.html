@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Donor Login{% endblock %}
+
+{% block content %}
+
+<main class="login-content">
+
+    <div class="login_heading">
+        <h3>“Log in and let humanity flow”</h3>
+    </div>
+
+    <br><br>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div style="text-align:center;">
+                {% for category, msg in messages %}
+                    <p style="color: {% if category=='error' %}red{% else %}green{% endif %};
+                              font-weight: bold; font-size: 18px;">
+                        {{ msg }}
+                    </p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <br>
+
+    <div class="login_form">
+        <form method="POST" action="{{ url_for('donor_login') }}">
+            <h5 class="log_form_heading">Login Form</h5>
+            <br>
+
+            <input type="email" name="email" class="username" placeholder="Enter email address" required>
+            <br><br><br>
+
+            <input type="password" name="password" class="password" placeholder="Enter Password" required>
+            <br><br>
+
+            <button type="submit" class="log_sbmt_btn">LOGIN</button>
+        </form>
+    </div>
+
+    <br>
+
+    <div class="Register_line">
+        <p>Didn't have an account?</p>
+        <a href="{{ url_for('donor_register') }}" class="Register_link">Register Now</a>
+    </div>
+
+</main>
+
+{% endblock %}

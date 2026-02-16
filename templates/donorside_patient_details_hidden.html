@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Patient Details{% endblock %}
+
+{% block content %}
+
+<main class="profile_view_content">
+
+    <h2 class="profile_title">Patient Details</h2>
+
+    <div class="profile_table_wrapper">
+        <table class="profile_table">
+
+            <tr>
+                <th>Field</th>
+                <th>Details</th>
+            </tr>
+
+            <tr>
+                <td>Patient Name</td>
+                <td>{{ patient.name }}</td>
+            </tr>
+
+            <tr>
+                <td>Gender</td>
+                <td>{{ patient.gender }}</td>
+            </tr>
+
+            <tr>
+                <td>Blood Group</td>
+                <td>{{ patient.blood_group }}</td>
+            </tr>
+
+            <tr>
+                <td>Weight</td>
+                <td>{{ patient.weight }}</td>
+            </tr>
+
+            <tr>
+                <td>Age</td>
+                <td>{{ patient.age }}</td>
+            </tr>
+
+            <tr>
+                <td>Date of Request</td>
+                <td>{{ donation_request.request_date.strftime('%d/%m/%Y') }}</td>
+            </tr>
+
+            <tr>
+                <td>Phone Number</td>
+                <td>{{ masked_phone }}</td>
+            </tr>
+
+            <tr>
+                <td>Address</td>
+                <td>{{ patient.address }}</td>
+            </tr>
+
+            <tr>
+                <td>Reason</td>
+                <td>{{ patient.reason }}</td>
+            </tr>
+
+            <tr>
+                <td>Hospital Name</td>
+                <td>{{ patient.hospital_name }}</td>
+            </tr>
+
+            <tr>
+                <td>Email Address</td>
+                <td>{{ masked_email }}</td>
+            </tr>
+
+        </table>
+    </div>
+
+    <!-- ACTION BUTTONS -->
+    <div class="request_action_btns">
+
+        <form method="POST" action="{{ url_for('donor_accept_from_details', request_id=donation_request.request_id) }}">
+    <button type="submit" class="accept_btn">Accept</button>
+</form>
+<br>
+        <form method="POST" action="{{ url_for('donor_reject_from_details', request_id=donation_request.request_id) }}">
+            <button type="submit" class="reject_btn">Reject</button>
+        </form>
+
+    </div>
+
+</main>
+
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}Donor Details{% endblock %}
+
+{% block content %}
+
+<main class="profile_view_content">
+
+    <h2 class="profile_title">Donor Details</h2>
+
+    <div class="profile_table_wrapper">
+        <table class="profile_table">
+
+            <tr>
+                <th>Field</th>
+                <th>Details</th>
+            </tr>
+
+            <tr>
+                <td>Name</td>
+                <td>{{ donor.full_name }}</td>
+            </tr>
+
+            <tr>
+                <td>Gender</td>
+                <td>{{ donor.gender }}</td>
+            </tr>
+
+            <tr>
+                <td>Blood Group</td>
+                <td>{{ donor.blood_group }}</td>
+            </tr>
+
+            <tr>
+                <td>Weight</td>
+                <td>{{ donor.weight_kg }}</td>
+            </tr>
+
+            <tr>
+                <td>Age</td>
+                <td>{{ donor.age }}</td>
+            </tr>
+
+            <tr>
+                <td>Phone Number</td>
+                <td>{{ donor.phone }}</td>
+            </tr>
+
+            <tr>
+                <td>Address</td>
+                <td>{{ donor.address }}</td>
+            </tr>
+
+            <tr>
+                <td>Have You Donated Blood Before?</td>
+                <td>{{ donor.donated_before }}</td>
+            </tr>
+
+            <tr>
+                <td>Last Date of Blood Donation</td>
+                <td>
+                    {% if donor.last_donation_date %}
+                        {{ donor.last_donation_date.strftime('%d/%m/%Y') }}
+                    {% else %}
+                        Never
+                    {% endif %}
+                </td>
+            </tr>
+
+            <tr>
+                <td>Any Disease?</td>
+                <td>{{ donor.any_disease }}</td>
+            </tr>
+
+            <tr>
+                <td>Any Bleeding Disorder?</td>
+                <td>{{ donor.bleeding_disorder }}</td>
+            </tr>
+
+            <tr>
+                <td>Are You Diabetic?</td>
+                <td>{{ donor.diabetic }}</td>
+            </tr>
+
+            <tr>
+                <td>Email Address</td>
+                <td>{{ donor.email }}</td>
+            </tr>
+
+        </table>
+    </div>
+
+</main>
+
+{% endblock %}

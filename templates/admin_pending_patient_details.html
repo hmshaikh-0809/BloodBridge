@@ -1,0 +1,79 @@
+{% extends "admin_base.html" %}
+
+{% block content %}
+
+    <h2 class="admin_page_title">Patient Details</h2>
+
+    <div class="admin_table_wrapper">
+        <table class="admin_table">
+
+            <tr>
+                <th>Field</th>
+                <th>Details</th>
+            </tr>
+
+            <tr>
+                <td>Patient Name</td>
+                <td>{{ patient.name }}</td>
+            </tr>
+
+            <tr>
+                <td>Gender</td>
+                <td>{{ patient.gender }}</td>
+            </tr>
+
+            <tr>
+                <td>Blood Group</td>
+                <td>{{ patient.blood_group }}</td>
+            </tr>
+
+            <tr>
+                <td>Weight</td>
+                <td>{{ patient.weight }}</td>
+            </tr>
+
+            <tr>
+                <td>Age</td>
+                <td>{{ patient.age }}</td>
+            </tr>
+
+            <tr>
+                <td>Date of Registration</td>
+                <td>{{ patient.date_of_registration.strftime('%d/%m/%Y') }}</td>
+            </tr>
+
+            <tr>
+                <td>Phone Number</td>
+                <td>{{ patient.phone }}</td>
+            </tr>
+
+            <tr>
+                <td>Address</td>
+                <td>{{ patient.address }}</td>
+            </tr>
+
+            <tr>
+                <td>Reason</td>
+                <td>{{ patient.reason }}</td>
+            </tr>
+
+            <tr>
+                <td>Hospital Name</td>
+                <td>{{ patient.hospital_name }}</td>
+            </tr>
+
+            <tr>
+                <td>Email Address :</td>
+                <td>{{ patient.email }}</td>
+            </tr>
+
+            <tr>
+                <td>Password</td>
+                <td>*** Secured (Encrypted) ***</td>
+            </tr>
+
+        </table>
+    </div>
+
+
+{% endblock %}

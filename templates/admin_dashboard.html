@@ -1,0 +1,46 @@
+{% extends "admin_base.html" %}
+{%block title %}admin dashboard{% endblock %}
+{% block content %}
+
+<main class="admin_dashboard_content">
+
+    <h2 class="admin_dash_title">DASHBOARD</h2>
+
+    <div class="admin_dashboard_box">
+
+        <ul class="admin_dash_list">
+            <li>
+                <span>Total Donors Count</span>
+                <span class="value">{{ total_donors }}</span>
+            </li>
+
+            <li>
+                <span>Total Patients Count</span>
+                <span class="value">{{ total_patients }}</span>
+            </li>
+
+            <li>
+                <span>Blood Camps Count</span>
+                <span class="value">{{ total_camps }}</span>
+            </li>
+
+            <li>
+                <span>Pending Requests Count</span>
+                <span class="value">{{ pending_requests }}</span>
+            </li>
+
+            <li>
+                <span>Active Donations Count</span>
+                <span class="value">{{ active_donations }}</span>
+            </li>
+
+            <li>
+                <span>Completed Donations Count</span>
+                <span class="value">{{ completed_donations }}</span>
+            </li>
+        </ul>
+
+    </div>
+</main>
+
+{% endblock %}

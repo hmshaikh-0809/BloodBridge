@@ -1,0 +1,65 @@
+{% extends "admin_base.html" %}
+{% block title %}Admin camp section{% endblock %}
+{% block content %}
+
+<h2 class="admin_page_title">Live Blood Camps</h2>
+
+<!-- SHOW MESSAGE IF NO CAMPS -->
+{% if camps|length == 0 %}
+<p class="no_data_box">Currently, there are no active blood donation camps.</p>
+{% endif %}
+
+<!-- SHOW TABLE ONLY IF CAMPS EXIST -->
+{% if camps|length > 0 %}
+
+<div class="admin_table_wrapper">
+
+    <table class="admin_table">
+        <thead>
+            <tr>
+                <th>Sr. No.</th>
+                <th>Hospital Name</th>
+                <th>Address</th>
+                <th>Camp</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for camp in camps %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ camp.hospital_name }}</td>
+                <td>{{ camp.address }}</td>
+                <td>{{ camp.camp_name }}</td>
+                <td>{{ camp.start_date }}</td>
+                <td>{{ camp.end_date }}</td>
+
+                <td>
+                    <a href="{{ url_for('admin_delete_camp', camp_id=camp.id) }}">
+                        <button class="remove_btn">Remove</button>
+                    </a>
+
+                    <a href="{{ url_for('admin_edit_camp', camp_id=camp.id) }}">
+                        <button class="edit_btn">Edit</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endif %}
+
+<!-- ADD CAMP BUTTON -->
+<div class="admin_btn_area">
+    <a href="{{ url_for('admin_add_camp') }}">
+        <button class="add_camp_btn">Add New Camp</button>
+    </a>
+</div>
+
+{% endblock %}

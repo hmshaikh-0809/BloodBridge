@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="search_results" style="padding:30px; text-align:center; color: antiquewhite;">
+
+    <h2>Search Results for: "{{ query }}"</h2>
+
+    {% if page %}
+        <p>Page found:</p>
+        <a href="{{ url_for(page) }}" style="font-size:20px; color:blue;">
+            Go to {{ page|capitalize }}
+        </a>
+    {% else %}
+        <p style="font-size:20px; color:rgb(250, 45, 45); margin-top:20px;">
+            ❌ No results found. Please try a different keyword.
+        </p>
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,566 @@
+/* ===== TOP BAR ===== */
+.admin_topbar {
+    background: #008b8b;
+    color: white;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+}
+
+.admin_topbar .right a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: underline;
+    font-size: 16px;
+}
+
+.admin_topbar .right a:hover {
+    opacity: 0.8;
+}
+
+/* ===== LAYOUT ===== */
+.admin_container {
+    display: flex;
+    height: calc(100vh - 55px);
+}
+
+/* ===== SIDEBAR ===== */
+.admin_sidebar {
+    width: 260px;
+    background: #009999;
+    border-right: 2px solid #006666;
+    padding-top: 20px;
+    overflow-y: auto;
+}
+
+.sidebar_item {
+    display: block;
+    padding: 15px 20px;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    border-bottom: 1px solid #007777;
+}
+
+.sidebar_item:hover {
+    background: #00a8a8;
+}
+
+/* ===== DROPDOWNS ===== */
+.sidebar_dropdown {
+    border-bottom: 1px solid #007777;
+}
+
+.dropdown_title {
+    padding: 15px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    background: #009999;
+}
+
+.dropdown_title:hover {
+    background: #00a8a8;
+}
+
+.dropdown_content {
+    display: none;
+    flex-direction: column;
+    background: #00b3b3;
+}
+
+.dropdown_content.open {
+    display: flex;
+}
+
+.dropdown_content a {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-top: 1px solid #008888;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+
+.dropdown_content a:hover {
+    background: #00cccc;
+}
+
+/* ===== MAIN CONTENT ===== */
+.admin_main {
+    flex: 1;
+    padding: 40px;
+    background: #fafafa;
+    overflow-y: auto;
+}
+/* === Dashboard Main Content === */
+.admin_dashboard_content {
+    padding: 40px 20px;
+    flex: 1;
+}
+
+.admin_dash_title {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-bottom: 30px;
+    color: #111;
+}
+
+/* === Dashboard Data Box === */
+.admin_dashboard_box {
+    background: white;
+    width: 85%;
+    margin: auto;
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* === Dashboard List === */
+.admin_dash_list {
+    list-style: none;
+    font-size: 20px;
+}
+
+.admin_dash_list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 5px;
+    border-bottom: 1px solid #ddd;
+    font-weight: 500;
+}
+
+.admin_dash_list li:last-child {
+    border-bottom: none;
+}
+
+.admin_dash_list .value {
+    font-weight: bold;
+    color: #000;
+}
+/* ===== MAIN AREA ===== */
+.admin_main {
+    padding: 25px 20px;
+}
+
+.admin_page_title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 700;
+    text-decoration: underline;
+    margin-bottom: 25px;
+}
+
+/* ===== TABLE WRAPPER ===== */
+.admin_table_wrapper {
+    width: 95%;
+    margin: auto;
+    overflow-x: auto;
+}
+
+/* ===== BASIC TABLE ===== */
+.admin_table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+}
+
+.admin_table th,
+.admin_table td {
+    border: 1px solid #444;
+    padding: 10px;
+    text-align: center;
+}
+
+.admin_table th {
+    background-color: #e0f7f7;
+    font-weight: 700;
+}
+
+/* ===== BUTTONS ===== */
+.remove_btn,
+.edit_btn {
+    padding: 6px 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    margin: 2px;
+}
+
+/* Remove Button */
+.remove_btn {
+    background-color: #d9534f;
+    color: white;
+}
+
+.remove_btn:hover {
+    background-color: #c9302c;
+}
+
+/* Edit Button */
+.edit_btn {
+    background-color: #5bc0de;
+    color: white;
+}
+
+.edit_btn:hover {
+    background-color: #31b0d5;
+}
+
+/* ===== ADD CAMP BUTTON ===== */
+.admin_btn_area {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.add_camp_btn {
+    padding: 12px 20px;
+    font-size: 17px;
+    border-radius: 8px;
+    border: 1px solid #555;
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.add_camp_btn:hover {
+    background-color: #dedede;
+}
+/* Page Title */
+.admin_page_title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 700;
+    text-decoration: underline;
+    margin-bottom: 25px;
+}
+
+/* Form Container */
+.camp_form {
+    width: 75%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 17px;
+}
+
+.camp_form input,
+.camp_form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #000;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Button Row */
+.admin_btn_row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+/* Buttons */
+.add_btn,
+.cancel_btn {
+    padding: 10px 25px;
+    font-size: 17px;
+    border: 1px solid #555;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #e0e0e0;
+}
+
+.add_btn:hover {
+    background-color: #d1d1d1;
+}
+
+.cancel_btn:hover {
+    background-color: #cfcfcf;
+}
+/*==additional css for pending donors==*/
+.admin_page_title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 700;
+    text-decoration: underline;
+    margin-bottom: 25px;
+}
+
+.content_area {
+    padding: 20px;
+}
+/*===if no data present*/
+.no_data_box {
+    display: none;
+    background: #ffecec;
+    padding: 15px 20px;
+    text-align: center;
+    border-left: 4px solid #d9534f;
+    width: 80%;
+    margin: 20px auto;
+    font-size: 18px;
+    font-weight: 600;
+    color: #7a0000;
+}
+/* Box Area */
+.admin_pass_box {
+    width: 60%;
+    margin: 0 auto;
+    border: 2px solid #000;
+    padding: 30px;
+}
+
+/* Form layout */
+.admin_pass_form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    font-size: 18px;
+}
+
+/* Inputs */
+.admin_pass_form input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #000;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Page Title */
+.admin_page_title {
+    text-align: center;
+    text-decoration: underline;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+/* Button Row */
+.admin_btn_row {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+/* Buttons */
+.add_btn,
+.cancel_btn {
+    padding: 10px 25px;
+    border: 1px solid #555;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #e0e0e0;
+    cursor: pointer;
+}
+
+.add_btn:hover {
+    background-color: #d0d0d0;
+}
+
+.cancel_btn:hover {
+    background-color: #cfcfcf;
+}
+
+/* =========================
+   RESPONSIVE DESIGN (ADMIN)
+   ========================= */
+
+/* --- Large tablet / small laptop (layout thoda tight) --- */
+@media (max-width: 1200px) {
+
+    .admin_main {
+        padding: 25px 15px;
+    }
+
+    .admin_dashboard_box,
+    .camp_form,
+    .admin_pass_box {
+        width: 95%;
+    }
+}
+
+/* --- Tablets & chhote screens (sidebar upar, content neeche) --- */
+@media (max-width: 900px) {
+
+    /* Container ab vertical ho jayega */
+    .admin_container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    /* Sidebar full-width strip ban jayega */
+    .admin_sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px solid #006666;
+        padding-top: 10px;
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* Simple items — 2 per row approx */
+    .sidebar_item {
+        flex: 1 1 45%;
+        margin: 2px 0;
+        border-bottom: none;
+        font-size: 16px;
+        padding: 10px 8px;
+    }
+
+    /* Dropdown heading bhi item ki tarah hi behave kare */
+    .sidebar_dropdown {
+        border-bottom: none;
+        flex: 1 1 45%;
+        margin: 2px 0;
+    }
+
+    .dropdown_title {
+        padding: 10px 8px;
+        font-size: 16px;
+        border-bottom: none;
+    }
+
+    .dropdown_content {
+        width: 100%;
+    }
+
+    .dropdown_content a {
+        font-size: 15px;
+        padding: 8px 6px;
+    }
+
+    /* Main area full width */
+    .admin_main {
+        width: 100%;
+        padding: 20px 10px;
+    }
+
+    .admin_dashboard_box {
+        width: 100%;
+    }
+}
+
+/* --- Phones (<= 600px) --- */
+@media (max-width: 600px) {
+
+    /* Topbar text thoda chhota + stacked */
+    .admin_topbar {
+        padding: 8px 10px;
+        font-size: 18px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .admin_topbar .right {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .admin_topbar .right a {
+        font-size: 14px;
+        margin-left: 0;
+    }
+
+    .admin_dash_title,
+    .admin_page_title {
+        font-size: 22px;
+        margin-bottom: 18px;
+    }
+
+    .admin_dashboard_box {
+        padding: 25px 15px;
+    }
+
+    .admin_dash_list {
+        font-size: 16px;
+    }
+
+    .admin_dash_list li {
+        padding: 10px 0;
+    }
+
+    /* Tables */
+    .admin_table_wrapper {
+        width: 100%;
+    }
+
+    .admin_table {
+        font-size: 14px;
+    }
+
+    .admin_table th,
+    .admin_table td {
+        padding: 8px 6px;
+    }
+
+    /* Forms (add/edit camp, change password, etc.) */
+    .camp_form,
+    .admin_pass_box {
+        width: 100%;
+    }
+
+    .camp_form {
+        font-size: 15px;
+    }
+
+    .camp_form input,
+    .camp_form textarea,
+    .admin_pass_form input {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .admin_pass_box {
+        padding: 20px 15px;
+    }
+
+    /* Form buttons one below another */
+    .admin_btn_row {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .add_btn,
+    .cancel_btn {
+        width: 100%;
+    }
+}
+
+/* --- Extra small phones (<= 400px) --- */
+@media (max-width: 400px) {
+
+    .sidebar_item,
+    .dropdown_title,
+    .dropdown_content a {
+        font-size: 14px;
+        padding: 8px 6px;
+    }
+
+    .admin_topbar {
+        font-size: 16px;
+    }
+
+    .admin_topbar .right a {
+        font-size: 13px;
+    }
+
+    .admin_dash_title,
+    .admin_page_title {
+        font-size: 20px;
+    }
+}

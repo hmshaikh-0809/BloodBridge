@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Live Blood Camps{% endblock %}
+
+{% block content %}
+
+<main class="camp_content">
+
+  <h2 class="camp_heading">LIVE BLOOD DONATION CAMPS</h2>
+
+  <div class="camp_poster">
+    <img src="{{ url_for('static', filename='images/blood_Camp.jpg') }}" alt="Save Lives Donate Blood">
+  </div>
+
+  <p class="camp_tagline">
+    “Stay updated with the latest blood donation drives and events near you”
+  </p>
+
+  <section class="camps_section">
+
+    <!-- Agar koi camp nahi ho to ye message show hoga -->
+    {% if camps|length == 0 %}
+      <p class="no_camps_msg" style="display: block;">
+        Currently, there are no active blood donation camps.
+      </p>
+    {% endif %}
+
+    <!-- Table wrapper -->
+    <div class="camp_table_wrapper">
+      <table class="camp_table">
+        <thead>
+          <tr>
+            <th>Sr. No.</th>
+            <th>Hospital Name</th>
+            <th>Address</th>
+            <th>Camp</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for camp in camps %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ camp.hospital_name }}</td>
+            <td>{{ camp.address }}</td>
+            <td>{{ camp.camp_name }}</td>
+            <td>{{ camp.start_date }}</td>
+            <td>{{ camp.end_date }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+
+      </table>
+    </div>
+
+  </section>
+
+  <p class="camp_footer_quote">
+    “Your simple act of kindness can turn into someone’s survival story.”
+  </p>
+
+</main>
+
+{% endblock %}

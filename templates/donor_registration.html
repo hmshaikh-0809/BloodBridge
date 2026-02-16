@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% block title %}Donor Registration{% endblock %}
+
+{% block content %}
+
+<main class="donor_registration-content">
+    <div class="register_heading">
+        <h3> “Sign up. Save lives.”</h3>
+    </div>
+
+    <div class="register_form">
+        <form method="POST" action="{{ url_for('donor_register') }}">
+            <h5 class="register_form_heading">REGISTRATION FORM</h5>
+            <br>
+
+            {# error message #}
+            {% if error %}
+            <p style="color:red; margin-bottom:10px;">{{ error }}</p>
+            {% endif %}
+
+            <label for="dname">Name :</label>
+            <input type="text" name="full_name" id="dname" required>
+            <br>
+
+            <label for="gndr">Gender :</label>
+            <select name="gender" id="gndr" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="bld_grp">Blood group :</label>
+            <select name="blood_group" id="bld_grp" required>
+                <option value="">Select Blood Group</option>
+                <option value="A+">A+</option>
+                <option value="B+">B+</option>
+                <option value="AB+">AB+</option>
+                <option value="O+">O+</option>
+                <option value="A-">A-</option>
+                <option value="B-">B-</option>
+                <option value="AB-">AB-</option>
+                <option value="O-">O-</option>
+            </select>
+            <br>
+
+            <label for="kg">weight :</label>
+            <input type="number" name="weight_kg" id="kg" placeholder="in kgs" required>
+
+            <label for="old">Age :</label>
+            <input type="number" name="age" id="old" required>
+            <br>
+
+            <label for="phn_No">Phone Number :</label>
+            <input type="number" name="phone" id="phn_No" required>
+            <br>
+
+            <label for="loc">Address :</label>
+            <br>
+            <textarea name="address" id="loc" cols="30" rows="4" required>please mention the city name properly</textarea>
+            <br>
+
+            <div class="donor_questions">
+                <div class="radio_group">
+                    <label>Have You Donated Blood Before?</label>
+                    <input type="radio" name="donated_before" id="q1" value="Yes" required>
+                    <label for="q1">Yes</label>
+                    <input type="radio" name="donated_before" id="q2" value="No">
+                    <label for="q2">No</label>
+                </div>
+                <br>
+
+                <label for="dntn_dt"> Last Date Of Blood Donation :</label>
+                <input type="date" name="last_donation_date" id="dntn_dt" disabled>
+                <br>
+
+                <div class="radio_group">
+                    <label>Any Disease?</label>
+                    <input type="radio" name="any_disease" id="d1" value="Yes" required>
+                    <label for="d1">Yes</label>
+                    <input type="radio" name="any_disease" id="d2" value="No">
+                    <label for="d2">No</label>
+                </div>
+                <br>
+
+                <div class="radio_group">
+                    <label> Any Bleeding Disorder?</label>
+                    <input type="radio" name="bleeding_disorder" id="s1" value="Yes" required>
+                    <label for="s1">Yes</label>
+                    <input type="radio" name="bleeding_disorder" id="s2" value="No">
+                    <label for="s2">No</label>
+                </div>
+                <br>
+
+                <div class="radio_group">
+                    <label> Are You Diabetic? </label>
+                    <input type="radio" name="diabetic" id="e1" value="Yes" required>
+                    <label for="e1">Yes</label>
+                    <input type="radio" name="diabetic" id="e2" value="No">
+                    <label for="e2">No</label>
+                </div>
+                <br>
+
+                <label for="mail_id">Email Address :</label>
+                <input type="email" name="email" id="mail_id" required>
+                <br>
+
+                <label for="pwd">Enter a Password :</label>
+                <input type="password" name="password" id="pwd" required>
+                <br>
+
+                <label for="cnf_pwd">Confirm Password : </label>
+                <input type="password" name="confirm_password" id="cnf_pwd" required>
+                <br>
+
+                <div class="consent_group">
+                    <input type="checkbox" name="consent" id="cnsnt">
+                    <label for="cnsnt">I understand and agree that I am donating blood by my
+                        own will and with full awareness.</label>
+                </div>
+
+                <br>
+
+                <button type="submit">
+                    submit
+                </button>
+            </div>
+        </form>
+    </div>
+<div class="Register_line">
+        <p>Already have an account?</p>
+        <a href="{{ url_for('donor_login') }}" class="Register_link">Log In</a>
+    </div>
+</main>
+
+<script>
+    // Last donation date enable/disable
+    const yesRadio = document.getElementById('q1');
+    const noRadio = document.getElementById('q2');
+    const lastDateInput = document.getElementById('dntn_dt');
+
+    function toggleLastDate() {
+        if (yesRadio.checked) {
+            lastDateInput.disabled = false;
+        } else {
+            lastDateInput.disabled = true;
+            lastDateInput.value = "";
+        }
+    }
+
+    if (yesRadio && noRadio && lastDateInput) {
+        yesRadio.addEventListener('change', toggleLastDate);
+        noRadio.addEventListener('change', toggleLastDate);
+        toggleLastDate();
+    }
+</script>
+
+{% endblock %}

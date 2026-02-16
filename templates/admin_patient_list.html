@@ -1,0 +1,55 @@
+{% extends "admin_base.html" %}
+{% block title %} patient list{% endblock %}
+{% block content %}
+
+
+
+<div class="content_area">
+
+
+
+    <h2 class="admin_page_title">Approved Patients</h2>
+
+    <!-- No Data Message -->
+    <p class="no_data_box" style="{% if patients|length == 0 %}display:block{% else %}display:none{% endif %}">
+        No approved patients found.
+    </p>
+
+    <!-- TABLE -->
+    <div class="admin_table_wrapper"
+        style="{% if patients|length == 0 %}display:none{% else %}display:block{% endif %}">
+        <table class="admin_table">
+
+            <tr>
+                <th>Sr. No.</th>
+                <th>Patient Name</th>
+                <th>Blood Group</th>
+                <th>Date of Registration</th>
+                <th>Details</th>
+                <th>Actions</th>
+            </tr>
+
+            {% for patient in patients %}
+
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ patient.name }}</td>
+                <td>{{ patient.blood_group }}</td>
+                <td>{{ patient.date_of_registration.strftime('%d/%m/%Y') if patient.date_of_registration else '' }}</td>
+                <td><a href="{{ url_for('admin_approved_patient_details', patient_id=patient.patient_id) }}">View
+                        details</a></td>
+
+                <td>
+                    <a href="{{ url_for('admin_delete_patient', patient_id=patient.patient_id) }}">
+                        <button class="remove_btn">Delete</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+
+</div>
+
+{% endblock %}

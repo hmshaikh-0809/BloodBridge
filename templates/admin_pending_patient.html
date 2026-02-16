@@ -1,0 +1,53 @@
+{% extends "admin_base.html" %}
+
+{% block content %}
+
+    <h2 class="admin_page_title">Pending Patient</h2>
+<p class="no_data_box"
+   style="{% if patients|length == 0 %}display:block{% else %}display:none{% endif %}">
+    No pending requests available.
+</p>
+
+    <div class="admin_table_wrapper" style="{% if patients|length == 0 %}display:none{% endif %}">
+        <table class="admin_table">
+<thead>
+            <tr>
+                <th>Sr No.</th>
+                <th>Patient Name</th>
+                <th>Blood Group</th>
+                <th>Date of Registration</th>
+                <th>Details</th>
+                <th>Action</th>
+            </tr>
+</thread>
+<tbody>
+            {% for patient in patients %}
+ <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ patient.name }}</td>
+                <td>{{ patient.blood_group }}</td>
+                <td>{{ patient.date_of_registration.strftime('%d/%m/%y') }}</td>
+<td>
+                    <a href="{{ url_for('admin_pending_patient_details', patient_id =patient.patient_id) }}">
+                        View<br>details
+                    </a>
+                </td>
+<td>
+                    <a href="{{ url_for('admin_approve_patient', patient_id=patient.patient_id) }}">
+                        <button class="edit_btn">Approve</button>
+                    </a>
+
+                    <a href="{{ url_for('admin_reject_patient', patient_id=patient.patient_id) }}">
+                        <button class="remove_btn">Reject</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}
+
+

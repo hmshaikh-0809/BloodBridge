@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Patient Dashboard{% endblock %}
+
+{% block content %}
+
+<main class="dashboard_content">
+
+    <!-- Welcome Text -->
+    <h2 class="welcome_msg">
+        Welcome back, <span class="user_name">{{ patient_name }}!</span></span><br>
+        <span class="sub_msg">Your journey toward healing continues here</span>
+    </h2>
+
+    <!-- Dashboard Image -->
+    <div class="dashboard_img_box">
+        <img src="{{ url_for('static', filename='images/patient_login.jpg') }}" alt="Patient Dashboard Image" class="dashboard_img">
+    </div>
+
+    <!-- Buttons Grid -->
+    <div class="dashboard_button_grid">
+
+        <a href="{{ url_for('patient_manage_account') }}" class="dash_btn">Manage Account</a>
+        <a href="{{ url_for('matching_donors') }}" class="dash_btn">Matching Donors</a>
+        <a href="{{ url_for('patient_my_requests') }}" class="dash_btn">My Requests</a>
+        <a href="{{ url_for('patient_logout') }}" class="dash_btn">Log Out</a>
+
+    </div>
+
+</main>
+
+{% endblock %}

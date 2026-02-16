@@ -1,0 +1,90 @@
+{% extends "admin_base.html" %}
+{% block title %}Admin active donation detail{% endblock %}
+{% block content %}
+
+<h2 class="admin_page_title">Donation Details</h2>
+
+<div class="admin_table_wrapper">
+    <table class="admin_table">
+        <thead>
+            <tr>
+                <th>Field</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>Donation Id</td>
+                <td>D{{ donation.donation_id }}</td>
+            </tr>
+
+            <tr>
+                <td>Donor Name</td>
+                <td>
+                    <a href="{{ url_for('admin_approved_donor_details', donor_id=donor.donor_id) }}">
+                        {{ donor.full_name }}
+                    </a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Blood Group of both</td>
+                <td>{{ donor.blood_group }}</td>
+            </tr>
+
+            <tr>
+                <td>Patient Name</td>
+                <td>
+                    <a href="{{ url_for('admin_approved_patient_details', patient_id=patient.patient_id) }}">
+                        {{ patient.name }}
+                    </a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Date of request</td>
+                <td>{{ donation.request_date.strftime('%d/%m/%Y') }}</td>
+            </tr>
+
+            <tr>
+                <td>Last Updated</td>
+                <td>{{ donation.last_updated.strftime('%d/%m/%Y') }}</td>
+            </tr>
+
+            <tr>
+                <td>Status</td>
+                <td>{{ donation.status }}</td>
+            </tr>
+
+            <tr>
+                <td>Verified By</td>
+                <td>
+                    {% if donation.donor_confirmed == 'No' and donation.patient_confirmed == 'No' %}
+                    None
+                    {% elif donation.donor_confirmed == 'Yes' and donation.patient_confirmed == 'No' %}
+                    Donor
+                    {% elif donation.donor_confirmed == 'No' and donation.patient_confirmed == 'Yes' %}
+                    Patient
+                    {% elif donation.donor_confirmed == 'Yes' and donation.patient_confirmed == 'Yes' %}
+                    Both
+                    {% endif %}
+                </td>
+            </tr>
+
+            <tr>
+                <td>Reason</td>
+                <td>{{ donation.reason }}</td>
+            </tr>
+
+            <tr>
+                <td>Hospital Name</td>
+                <td>{{ donation.hospital_name }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

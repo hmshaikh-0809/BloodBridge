@@ -1,0 +1,49 @@
+{% extends "admin_base.html" %}
+{%block title %}admin completed donations{% endblock %}
+{% block content %}
+
+<div class="content_area">
+
+    <h2 class="admin_page_title">Completed Donations</h2>
+
+    {% if donations|length == 0 %}
+    <p>No completed donations found.</p>
+    {% else %}
+
+    <div class="admin_table_wrapper">
+        <table class="admin_table">
+
+            <tr>
+                <th>Sr No.</th>
+                <th>Donation ID</th>
+                <th>Status</th>
+                <th>Request Date</th>
+                <th>Last Updated</th>
+                <th>Verified by</th>
+                <th>Details</th>
+            </tr>
+
+            {% for d in donations %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>D{{ d.donation_id }}</td>
+                <td>Completed</td>
+                <td>{{ d.request_date.strftime('%d/%m/%Y') }}</td>
+                <td>{{ d.last_updated.strftime('%d/%m/%Y') }}</td>
+                <td>Both</td>
+                <td>
+                    <a href="{{ url_for('admin_completed_donation_details', donation_id=d.donation_id) }}">
+                        View Details
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

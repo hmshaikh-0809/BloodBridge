@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Donation History{% endblock %}
+
+{% block content %}
+
+<main class="request-board">
+
+    <h2 class="page-title">Donation History</h2>
+
+    <!-- NO HISTORY MESSAGE -->
+    <div class="no_request_box"
+         style="{% if donations|length == 0 %}display:block{% else %}display:none{% endif %}">
+        <p class="no_request_text">
+            No donation history available.
+        </p>
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-container"
+         style="{% if donations|length == 0 %}display:none{% else %}display:block{% endif %}">
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Donor Name</th>
+                    <th>Blood Group</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for d in donations %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ d.donor_name }}</td>
+                    <td>{{ d.blood_group }}</td>
+                    <td>{{ d.completion_date.strftime('%d/%m/%Y') }}</td>
+                    <td>Completed</td>
+                    <td class="confirm-box">
+                        <label>
+                            <input type="checkbox" checked disabled>
+                            Confirmed by both
+                        </label>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+</main>
+
+{% endblock %}

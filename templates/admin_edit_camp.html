@@ -1,0 +1,31 @@
+{% extends "admin_base.html" %}
+{% block title %}edit camp{% endblock %}
+{% block content %}
+
+<h2 class="admin_page_title">Edit Camp</h2>
+
+<form class="camp_form" method="POST" action="{{ url_for('admin_edit_camp', camp_id=camp.id) }}">
+
+    <label>Hospital Name :</label>
+    <input type="text" name="hospital_name" value="{{ camp.hospital_name }}" required>
+
+    <label>Address :</label>
+    <textarea name="address" rows="3" required>{{ camp.address }}</textarea>
+
+    <label>Camp :</label>
+    <textarea name="camp_name" rows="3" required>{{ camp.camp_name }}</textarea>
+
+    <label>Start Date :</label>
+    <input type="date" name="start_date" value="{{ camp.start_date }}" required>
+
+    <label>End Date :</label>
+    <input type="date" name="end_date" value="{{ camp.end_date }}" required>
+
+    <div class="admin_btn_row">
+        <button type="submit" class="add_btn">Save Changes</button>
+        <a href="{{ url_for('admin_camps') }}" class="cancel_btn">Cancel</a>
+    </div>
+
+</form>
+
+{% endblock %}

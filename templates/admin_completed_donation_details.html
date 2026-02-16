@@ -1,0 +1,80 @@
+{% extends "admin_base.html" %}
+{% block title %}Admin completed donations detail{% endblock %}
+{% block content %}
+
+<div class="content_area">
+
+    <h2 class="admin_page_title">Donation Details</h2>
+
+    <div class="admin_table_wrapper">
+        <table class="admin_table">
+
+            <tr>
+                <th>Field</th>
+                <th>Details</th>
+            </tr>
+
+            <tr>
+                <td>Donation Id</td>
+                <td>D{{ donation.donation_id }}</td>
+            </tr>
+
+            <tr>
+                <td>Donor Name</td>
+                <td>
+                    <a href="{{ url_for('admin_approved_donor_details', donor_id=donation.donor_id) }}">
+                        {{ donation.donor_name }}
+                    </a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Blood Group of both</td>
+                <td>{{ donation.blood_group }}</td>
+            </tr>
+
+            <tr>
+                <td>Patient Name</td>
+                <td>
+                    <a href="{{ url_for('admin_approved_patient_details', patient_id=donation.patient_id) }}">
+                        {{ donation.patient_name }}
+                    </a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Date of request</td>
+                <td>{{ donation.request_date.strftime('%d/%m/%Y') }}</td>
+            </tr>
+
+            <tr>
+                <td>Last Updated</td>
+                <td>{{ donation.last_updated.strftime('%d/%m/%Y') }}</td>
+            </tr>
+
+            <tr>
+                <td>Status</td>
+                <td>Completed</td>
+            </tr>
+
+            <tr>
+                <td>Verified By</td>
+                <td>Both</td>
+            </tr>
+
+            <tr>
+                <td>Reason</td>
+                <td>{{ donation.reason }}</td>
+            </tr>
+
+            <tr>
+                <td>Hospital Name</td>
+                <td>{{ donation.hospital_name }}</td>
+            </tr>
+
+        </table>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Registration Successful{% endblock %}
+
+{% block content %}
+
+<main class="donor_submit_success-content">
+    <div class="reg_success_img">
+        <img src="{{ url_for('static', filename='images/thumb.png') }}" alt="thumb">
+        <br>
+    </div>
+    <div class="reg_success">
+        <p>Thank you for registering as a blood donor!
+            Your profile is under review by our team.
+            Once approved,
+            you’ll be able to donate and save lives.
+            We appreciate your willingness to help</p>
+    </div>
+    <div class="cont">
+        <form action="{{ url_for('donor_login') }}" method="get">
+            <button type="submit">
+                Continue
+            </button>
+        </form>
+    </div>
+</main>
+
+{% endblock %}

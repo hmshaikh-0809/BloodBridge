@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+
+<main class="edit_profile_content">
+    <br>
+
+    <h2 class="profile_title_edit">Edit Your Profile</h2>
+
+    <div class="register_form">
+
+        {% if error %}
+        <p style="color: red; text-align: center; margin-bottom: 10px;">
+            {{ error }}
+        </p>
+        {% endif %}
+
+        <form action="{{ url_for('donor_edit_profile') }}" method="POST">
+
+            <!-- NAME -->
+            <label for="name">Name :</label>
+            <input type="text" id="name" name="name" value="{{ donor.full_name }}" required>
+
+            <!-- GENDER (Disabled) -->
+            <label for="gender">Gender :</label>
+            <select id="gender" name="gender" disabled>
+                <option value="{{ donor.gender }}">{{ donor.gender }}</option>
+            </select>
+
+            <!-- BLOOD GROUP (Disabled) -->
+            <label for="blood_group">Blood Group :</label>
+            <select id="blood_group" name="blood_group" disabled>
+                <option value="{{ donor.blood_group }}">{{ donor.blood_group }}</option>
+            </select>
+
+            <!-- WEIGHT -->
+            <label for="weight">Weight :</label>
+            <input type="number" id="weight" name="weight" value="{{ donor.weight_kg }}" required>
+
+            <!-- AGE -->
+            <label for="age">Age :</label>
+            <input type="number" id="age" name="age" value="{{ donor.age }}" required>
+
+            <!-- PHONE -->
+            <label for="phone">Phone Number :</label>
+            <input type="number" id="phone" name="phone" value="{{ donor.phone }}" required>
+
+            <!-- ADDRESS -->
+            <label for="address">Address :</label>
+            <textarea id="address" name="address" rows="3" required>{{ donor.address }}</textarea>
+
+            <!-- YES/NO QUESTIONS -->
+            <div class="donor_questions">
+
+                <div class="radio_group">
+                    <label>Have You Donated Blood Before?</label>
+                    <input type="radio" name="donated_before" value="Yes"
+                           {% if donor.donated_before == 'Yes' %}checked{% endif %}> Yes
+                    <input type="radio" name="donated_before" value="No"
+                           {% if donor.donated_before == 'No' %}checked{% endif %}> No
+                </div>
+
+                <div class="radio_group">
+                    <label>Last Date Of Blood Donation :</label>
+                    <input type="date" id="last_donation_date" name="last_donation_date"
+                           value="{{ donor.last_donation_date }}">
+                </div>
+
+                <div class="radio_group">
+                    <label>Any Disease?</label>
+                    <input type="radio" name="any_disease" value="Yes"
+                           {% if donor.any_disease == 'Yes' %}checked{% endif %}> Yes
+                    <input type="radio" name="any_disease" value="No"
+                           {% if donor.any_disease == 'No' %}checked{% endif %}> No
+                </div>
+
+                <div class="radio_group">
+                    <label>Any Bleeding Disorder?</label>
+                    <input type="radio" name="bleeding_disorder" value="Yes"
+                           {% if donor.bleeding_disorder == 'Yes' %}checked{% endif %}> Yes
+                    <input type="radio" name="bleeding_disorder" value="No"
+                           {% if donor.bleeding_disorder == 'No' %}checked{% endif %}> No
+                </div>
+
+                <div class="radio_group">
+                    <label>Are You Diabetic?</label>
+                    <input type="radio" name="diabetic" value="Yes"
+                           {% if donor.diabetic == 'Yes' %}checked{% endif %}> Yes
+                    <input type="radio" name="diabetic" value="No"
+                           {% if donor.diabetic == 'No' %}checked{% endif %}> No
+                </div>
+
+            </div>
+
+            <!-- EMAIL -->
+            <label for="email">Email Address :</label>
+            <input type="email" id="email" name="email" value="{{ donor.email }}" required>
+
+            <!-- PASSWORD -->
+            <label for="password">Change Password :</label>
+            <input type="password" name="password" id="password" placeholder="Enter new password">
+
+            <label for="confirm_password">Re-enter new password :</label>
+            <input type="password" name="confirm_password" id="confirm_password" placeholder="Re-enter password">
+
+            <!-- BUTTONS -->
+            <button type="submit">Save</button>
+
+            <button type="button" class="cancel_btn"
+                    onclick="window.location.href='{{ url_for('donor_manage_account') }}'">
+                Cancel
+            </button>
+
+        </form>
+
+    </div>
+
+</main>
+
+<!-- JS: Last donation date enable/disable like registration -->
+<script>
+  function toggleLastDonationField() {
+      const yesRadio = document.querySelector('input[name="donated_before"][value="Yes"]');
+      const dateInput = document.getElementById("last_donation_date");
+      if (!yesRadio || !dateInput) return;
+
+      if (yesRadio.checked) {
+          dateInput.disabled = false;
+      } else {
+          dateInput.value = "";
+          dateInput.disabled = true;
+      }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+      const radios = document.querySelectorAll('input[name="donated_before"]');
+      radios.forEach(r => r.addEventListener("change", toggleLastDonationField));
+      toggleLastDonationField();  // initial state on page load
+  });
+</script>
+
+{% endblock %}

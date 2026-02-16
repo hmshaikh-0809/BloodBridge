@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Matching Donors{% endblock %}
+
+{% block content %}
+
+<main class="matching-donor-content">
+
+    <h2 class="page-title">Matching Donors</h2>
+
+    <!-- NO DONORS -->
+    <div class="no_request_box"
+         style="{% if donors|length == 0 %}display:block{% else %}display:none{% endif %}">
+        <p class="no_request_text">
+            No matching donors found
+        </p>
+    </div>
+
+    <div class="table-container"
+     style="{% if donors|length == 0 %}display:none{% endif %}">
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Sr No.</th>
+                    <th>Donor Name</th>
+                    <th>Blood Group</th>
+                    <th>Details</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for donor in donors %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ donor.full_name }}</td>
+                    <td>{{ donor.blood_group }}</td>
+
+                    <td>
+                        <a href="{{ url_for('patient_view_donor_details_hidden', donor_id=donor.donor_id) }}"
+                           class="details-link">
+                            View details
+                        </a>
+                    </td>
+
+                    <td class="action-buttons">
+
+                        {% if donor.requested %}
+                        <!-- Requested -->
+                        <form method="POST"
+                              action="{{ url_for('patient_cancel_request', donor_id=donor.donor_id) }}">
+                            <button class="btn requested-btn">Requested</button>
+                        </form>
+                        {% else %}
+                        <!-- Send Request -->
+                        <form method="POST"
+                              action="{{ url_for('patient_send_request', donor_id=donor.donor_id) }}">
+                            <button class="btn send-request-btn">Send Request</button>
+                        </form>
+                        {% endif %}
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+</main>
+
+{% endblock %}

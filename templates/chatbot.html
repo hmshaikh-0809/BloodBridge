@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BloodBot</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bloodbot.css') }}">
+</head>
+
+<body class="bb-body">
+
+    <!-- BLOOD BACKGROUND LAYER -->
+    <div class="blood-layer"></div>
+    <!-- HEADER -->
+    <div class="bb-header">
+        BloodBot
+    </div>
+
+    <!-- CHAT AREA -->
+    <div class="bb-chat-area" id="bbChatArea">
+
+        <!-- WELCOME (center) -->
+        <div class="bb-welcome" id="bbWelcome">
+            Welcome, ask anything about blood donation
+        </div>
+
+    </div>
+
+    <!-- INPUT BAR -->
+    <div class="bb-input-bar">
+        <input
+            type="text"
+            id="bbInput"
+            placeholder="Ask your doubts..."
+            onkeydown="if(event.key==='Enter'){bbSendMessage()}"
+        >
+
+        <button class="bb-mic-btn" onclick="bbStartVoice()">
+    <img src="{{ url_for('static', filename='images/mic.svg') }}" class="bb-mic-icon">
+</button>
+
+
+        <button class="bb-send-btn" onclick="bbSendMessage()">
+            ➤
+        </button>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/bloodbot.js') }}"></script>
+</body>
+</html>

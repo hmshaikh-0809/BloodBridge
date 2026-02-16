@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+
+<main class="edit_profile_content">
+    <br>
+    <h2 class="profile_title">Edit Profile</h2>
+
+    <div class="register_form">
+        {% if error %}
+        <p style="color: red; text-align: center; margin-bottom: 10px;">
+            {{ error }}
+        </p>
+        {% endif %}
+
+        <form action="{{ url_for('patient_edit_profile') }}" method="POST">
+
+            <!-- Name -->
+            <label for="p_name">Name :</label>
+            <input type="text" id="p_name" name="name" value="{{ patient.name }}" required>
+
+            <!-- Gender (Disabled) -->
+            <div style="display: flex; gap: 20px;">
+                <div style="flex: 1;">
+                    <label for="gender">Gender :</label>
+                    <select id="gender" name="gender" disabled>
+                        <option selected>{{ patient.gender }}</option>
+                    </select>
+                </div>
+
+                <!-- Blood Group (Disabled) -->
+                <div style="flex: 1;">
+                    <label for="blood_group">Blood Group :</label>
+                    <select id="blood_group" name="blood_group" disabled>
+                        <option value="{{ patient.blood_group }}">{{ patient.blood_group }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Weight & Age -->
+            <div style="display: flex; gap: 20px;">
+                <div style="flex: 1;">
+                    <label for="weight">Weight :</label>
+                    <input type="number" id="weight" name="weight" value="{{ patient.weight }}" required>
+                </div>
+
+                <div style="flex: 1;">
+                    <label for="age">Age :</label>
+                    <input type="number" id="age" name="age" value="{{ patient.age }}" required>
+                </div>
+            </div>
+
+            <!-- Phone -->
+            <label for="phone">Phone Number :</label>
+            <input type="number" id="phone" name="phone" value="{{ patient.phone }}" required>
+
+            <!-- Address -->
+            <label for="address">Address :</label>
+            <textarea id="address" name="address" rows="3" required>{{ patient.address }}</textarea>
+
+            <!-- Reason -->
+            <label for="reason">Reason :</label>
+            <input type="text" id="reason" name="reason" value="{{ patient.reason }}" required>
+
+            <!-- Hospital -->
+            <label for="hospital">Hospital Name :</label>
+            <input type="text" id="hospital" name="hospital" value="{{ patient.hospital_name }}" required>
+
+            <!-- Email -->
+            <label for="email">Email Address :</label>
+            <input type="email" id="email" name="email" value="{{ patient.email }}" required>
+
+            <!-- Change Password -->
+            <label for="new_pwd">Change Password :</label>
+            <input type="password" id="new_pwd" name="new_password">
+
+            <label for="cnf_pwd">Re - enter New Password :</label>
+            <input type="password" id="cnf_pwd" name="confirm_password">
+
+            <!-- Buttons -->
+            <button type="submit">SAVE</button>
+            <button type="button" class="cancel_btn" onclick="window.location.href='{{ url_for('patient_manage_account') }}'">CANCEL</button>
+
+        </form>
+
+    </div>
+
+</main>
+
+{% endblock %}    

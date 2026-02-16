@@ -1,0 +1,59 @@
+{% extends "admin_base.html" %}
+
+{% block content %}
+
+<h2 class="admin_page_title">Pending Donors</h2>
+
+<!-- NO DATA MESSAGE -->
+<p class="no_data_box"
+   style="{% if donors|length == 0 %}display:block{% else %}display:none{% endif %}">
+    No pending requests available.
+</p>
+
+<!-- TABLE SECTION -->
+<div class="admin_table_wrapper"
+     style="{% if donors|length == 0 %}display:none{% endif %}">
+
+    <table class="admin_table">
+        <thead>
+            <tr>
+                <th>Sr No.</th>
+                <th>Donor Name</th>
+                <th>Blood Group</th>
+                <th>Date of Registration</th>
+                <th>Details</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for donor in donors %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ donor.full_name }}</td>
+                <td>{{ donor.blood_group }}</td>
+                <td>{{ donor.created_at.strftime('%d/%m/%y') }}</td>
+
+                <td>
+                    <a href="{{ url_for('admin_pending_donor_details', donor_id=donor.donor_id) }}">
+                        View<br>details
+                    </a>
+                </td>
+
+                <td>
+                    <a href="{{ url_for('admin_approve_donor', donor_id=donor.donor_id) }}">
+                        <button class="edit_btn">Approve</button>
+                    </a>
+
+                    <a href="{{ url_for('admin_reject_donor', donor_id=donor.donor_id) }}">
+                        <button class="remove_btn">Reject</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Account{% endblock %}
+
+{% block content %}
+
+  <main class="delete_account_content">
+    <br>
+
+    <h2 class="form_title">Delete Account</h2>
+
+    <div class="register_form delete_form">
+      
+      {% if error %}
+        <p style="color:red; text-align:center; font-weight:bold;">{{ error }}</p>
+        {% endif %}
+
+        <form id ="deleteform" action="{{ url_for('patient_delete_account') }}" method="POST">
+
+            <!-- Email -->
+            <label for="email">Enter Email ID :</label>
+            <input type="email" id="email" name="email" required>
+
+            <!-- Password -->
+            <label for="password">Enter Password :</label>
+            <input type="password" id="password" name="password" required>
+
+            <!-- Re-enter Password -->
+            <label for="confirm_password">Re-enter Password :</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+
+            <!-- Reason -->
+            <label for="reason">Choose a Reason of Deletion :</label>
+            <select id="reason" name="reason" required>
+               <option value="">-- Select --</option>
+                <option>Don't need help anymore</option>
+                <option>Got help from other place</option>
+                <option>Don’t like platform</option>
+                <option>Others</option>
+            </select>
+
+            <!-- Buttons -->
+            <div class="delete_btn_row">
+                <button type="submit" class="delete_btn" onclick="confirmDelete()">Delete</button>
+                <button type="button" class="cancel_btn"
+                    onclick="window.location.href='{{ url_for('patient_manage_account') }}'">Cancel</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</main>
+
+
+<script>
+function confirmDelete() {
+    let reason = document.getElementById("reason").value;
+    if (reason === "") {
+        alert("Please select a reason for deletion.");
+        return;
+    }
+
+    let box = confirm("Are you sure you want to delete your account?");
+    if (box) {
+        document.getElementById("deleteForm").submit();
+    } else {
+        window.location.href = "{{ url_for('donor_manage_account') }}";
+    }
+}
+</script>
+
+    {% endblock %}

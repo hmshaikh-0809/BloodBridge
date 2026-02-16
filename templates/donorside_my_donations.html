@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}My Donations{% endblock %}
+
+{% block content %}
+
+<main class="donations_section">
+
+    <h2 class="section_title">My Donations</h2>
+
+    <div class="donations_card_container">
+
+        <!-- Active Donations Card -->
+        <a href="{{ url_for('donor_active_donations') }}" class="donation_card">
+            <img src="{{ url_for('static', filename='images/active_donation.png') }}"
+                 alt="Active Donations"
+                 class="donation_card_icon">
+            <h3 class="donation_card_title">Active Donations</h3>
+        </a>
+
+        <!-- Donation History Card -->
+        <a href="{{ url_for('donor_donation_history') }}" class="donation_card">
+            <img src="{{ url_for('static', filename='images/donation_history.png') }}"
+                 alt="Donation History"
+                 class="donation_card_icon">
+            <h3 class="donation_card_title">Donation History</h3>
+        </a>
+
+    </div>
+
+</main>
+
+{% endblock %}

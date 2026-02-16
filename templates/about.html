@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+
+<main class="about_content">
+
+    <h2 class="about_title">About Us</h2>
+
+    <!-- Card 1 -->
+    <div class="about_card">
+        <div class="about_text">
+            <h3>“Our Mission — Making Blood Accessible for Everyone”</h3>
+            <p>
+                We are committed to creating a safe, simple, and transparent blood donation
+                network where patients can quickly find matching donors in times of need.
+                Our platform brings together people who care — volunteers ready to donate
+                and those who rely on them for a second chance at life.
+            </p>
+        </div>
+        <img src="../static/images/Our_mission.jpg" class="about_img" alt="Mission Image">
+    </div>
+
+    <!-- Card 2 -->
+    <div class="about_card reverse">
+        <img src="../static/images/what_we_do.jpg" class="about_img" alt="What We Do Image">
+
+        <div class="about_text">
+            <h3>“What We Do”</h3>
+            <p>
+                We connect voluntary blood donors with patients in urgent need through an easy-to-use
+                online platform. We ensure that all donor and patient details are verified and authentic.
+                We keep track of active and completed donations, building a transparent record of compassion.
+                We encourage awareness and participation in blood donation drives and local camps.
+            </p>
+        </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="about_card">
+        <div class="about_text">
+            <h3>“Why Choose Us?”</h3>
+            <ul>
+                <li><b>Trusted Platform:</b> Every donor and patient undergoes verification.</li>
+                <li><b>Fast & Reliable:</b> Patients can find matching donors within minutes.</li>
+                <li><b>Community Driven:</b> Built by people who care, for people who care.</li>
+                <li><b>Transparency First:</b> Track every step of the donation safely.</li>
+            </ul>
+        </div>
+        <img src="../static/images/why_choose_us.jpg" class="about_img" alt="Why Us Image">
+    </div>
+
+    <!-- Card 4 -->
+    <div class="about_card reverse">
+        <img src="../static/images/behind_the_platform.jpg" class="about_img" alt="Team Image">
+
+        <div class="about_text">
+            <h3>“Behind the Platform”</h3>
+            <p>
+                We are a group of passionate students and developers who believe that technology
+                should serve humanity. This project is built with love, purpose, and the vision
+                to make life-saving connections possible through a few clicks.
+            </p>
+        </div>
+    </div>
+
+</main>
+
+{% endblock %}

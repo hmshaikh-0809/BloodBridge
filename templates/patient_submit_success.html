@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Registration Successful{% endblock %}
+
+{% block content %}
+
+        <main class="patient_submit_success-content">
+            <div class="reg_success_img">
+                <img src="{{ url_for('static', filename='images/thumb.png') }}" alt="thumb">
+                <br>
+            </div>
+            <div class="reg_success">
+                <p>Registration successful!<br>
+                    Our team is reviewing your details for
+                    verification.
+                    After approval, your account will be
+                    activated.</p>
+            </div>
+            <div class="cont">
+                <form action="{{ url_for('patient_login') }}" method="get">
+                    <button type="submit">
+                        Continue
+                    </button>
+                </form>
+            </div>
+            
+
+    </div>
+    </main>
+    <br>
+
+   {% endblock %}

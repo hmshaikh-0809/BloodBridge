@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{%block title %}admin login{% endblock %}
+{% block content %}
+
+<main class="login-content">
+
+    <br>
+    <div class="login_form">
+        <form action="{{ url_for('admin_login') }}" method="POST">
+            <h5 class="log_form_heading">Administrator Login</h5>
+            <br>
+
+            <input type="text" name="username" class="username" placeholder="Enter username" required>
+            <br><br><br>
+
+            <input type="password" name="password" class="password" placeholder="Enter Password" required>
+            <br><br>
+
+            <button type="submit" class="log_sbmt_btn">LOGIN</button>
+            {% with messages = get_flashed_messages(category_filter=['error']) %}
+            {% if messages %}
+            <p style="color:red; margin-top:10px; text-align:center;">
+                {{ messages[0] }}
+            </p>
+            {% endif %}
+            {% endwith %}
+
+        </form>
+    </div>
+
+</main>
+
+{% endblock %}

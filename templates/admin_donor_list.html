@@ -1,0 +1,53 @@
+{% extends "admin_base.html" %}
+{%block title %}donor list{% endblock %}
+{% block content %}
+
+<div class="content_area">
+
+    <h2 class="admin_page_title">Approved Donors</h2>
+
+    <!-- No Data Message -->
+    <p class="no_data_box" style="{% if donors|length == 0 %}display:block{% else %}display:none{% endif %}">
+        No approved donors found.
+    </p>
+
+    <div class="admin_table_wrapper" style="{% if donors|length == 0 %}display:none{% else %}display:block{% endif %}">
+
+        <table class="admin_table">
+
+            <tr>
+                <th>Sr. No.</th>
+                <th>Donor Name</th>
+                <th>Blood Group</th>
+                <th>Date of Registration</th>
+                <th>Details</th>
+                <th>Actions</th>
+            </tr>
+
+            {% for donor in donors %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ donor.full_name }}</td>
+                <td>{{ donor.blood_group }}</td>
+                <td>{{ donor.created_at.strftime('%d/%m/%Y') if donor.created_at else '' }}</td>
+
+                <td>
+                    <a href="{{ url_for('admin_approved_donor_details', donor_id=donor.donor_id) }}">
+                        View details
+                    </a>
+                </td>
+
+                <td>
+                    <a href="{{ url_for('admin_delete_donor', donor_id=donor.donor_id) }}">
+                        <button class="remove_btn">Delete</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+
+</div>
+
+{% endblock %}

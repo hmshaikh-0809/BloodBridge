@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}My Requests{% endblock %}
+
+{% block content %}
+
+ <main class="account_manage_content">
+
+      <h2 class="account_title">My Requests</h2>
+
+      <div class="account_card_container">
+
+        <!-- Active Requests -->
+        <a href="{{ url_for('patient_active_requests') }}" class="account_card">
+          <img src="{{ url_for('static', filename='images/active_donation.png') }}" class="account_icon" alt="Active Requests">
+          <h3>Active Requests</h3>
+        </a>
+
+        <!-- Request History -->
+        <a href="{{ url_for('patient_donation_history') }}" class="account_card">
+          <img src="{{ url_for('static', filename='images/donation_history.png') }}" class="account_icon" alt="Request History">
+          <h3>Donation History</h3>
+        </a>
+
+      </div>
+
+    </main>
+
+{% endblock %}    

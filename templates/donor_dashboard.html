@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Donor Dashboard{% endblock %}
+
+{% block content %}
+
+<main class="dashboard_content">
+
+    <h2 class="welcome_msg">
+        Welcome back, <span class="user_name">{{ donor_name }}!</span><br>
+        <span class="sub_msg">Your kindness keeps the world alive.</span>
+    </h2>
+
+    <div class="dashboard_img_box">
+        <img src="{{ url_for('static', filename='images/donor_login.jpg') }}" class="dashboard_img" alt="Donate Blood">
+    </div>
+
+    <div class="dashboard_button_grid">
+        <a href="{{ url_for('donor_manage_account') }}" class="dash_btn">Manage Account</a>
+        <a href="{{ url_for('donor_request_board') }}" class="dash_btn">Request Board</a>
+        <a href="{{ url_for('donor_my_donations') }}" class="dash_btn">My Donations</a>
+        <a href="{{ url_for('donor_logout') }}" class="dash_btn">Log Out</a>
+    </div>
+
+</main>
+
+{% endblock %}
